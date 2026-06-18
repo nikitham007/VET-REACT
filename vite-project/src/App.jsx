@@ -1,3 +1,4 @@
+ // java script code
 import { useState, useEffect } from "react";
 
 function App(){
