@@ -1,4 +1,162 @@
+import { useState, useEffect } from "react";
+
 function App(){
+
+  const[name,setName] = useState("")
+  const[email,setEmail] = useState("");
+  const[department,setDepartment] = useState("");
+  const[age,setAge] = useState("");
+
+  const[student,setStudents] = useState("[]");
+
+  const[editIndex,setEditIndex] = useState(null);
+
+  useEffect(() => {
+
+    const savedStudents = 
+    JSON.parse(
+      localStorage.storage.getItem("students")
+    ) || [];
+    setStudents(savedStudents)
+  },[]);
+  const handleSubmit = () => {
+    
+    if(
+      name ==="" ||
+      email === "" ||
+      department === "" ||
+      age === ""
+    ){
+
+      alert("Please fill all fields");
+
+      return;
+
+    }
+    const student = {
+
+      name,
+      email,
+      department,
+      age
+    };
+
+    if (editIndex !== null){
+      const updatedStudents = [...students];
+
+      updatedStudents[editIndex] = student;
+
+      setStudents(updatedStudents);
+
+      localStorage.setItem(
+
+        "student",
+
+        JSON.stringify(updatedStudents)
+      );
+
+      setEditIndex(null);
+    }
+
+    else{
+
+      const updatedStudents = [
+
+        ...student,
+
+        student
+      ];
+
+      setStudents(updatedStudents);
+
+      localStorage.setItem(...);
+
+    }
+
+    localStorage.setItem(
+
+      "students",
+
+      JSON.stringify(updatedStudents)
+      )
+  };
+
+  setName("");
+
+  setEmail("");
+
+  setDepartment("");
+
+  setAge("");
+
+  const handleEdit = (index) => {
+    const student = students[index];
+
+    setName(student.name);
+
+    setEmail(student.email);
+
+    setDepartment(student.department);
+
+    setAge(student.age);
+
+    setEditIndex(index);
+
+  };
+
+  const handleDelete = (index) => {
+
+    const updatedStudents =
+
+    student.filter(
+
+      (student, i) => i !== index
+      
+    );
+
+    setStudents(updatedStudents);
+
+    localStorage.setItem(
+
+      "student",
+
+      JSON.stringify(updatedStudents)
+
+    );
+
+    const inputStyle = {
+
+      width: "100%",
+
+      padding: "10px",
+
+      marginBottom: "15px",
+
+      borderRadius: "5px",
+
+      border: "1px solid #ccc",
+
+      boxSizing: "border-box"
+
+    };
+
+    const buttonStyle = {
+
+      width:"100%",
+
+      padding:"12px",
+
+      border:"none",
+
+      borderRadius:"5px",
+
+      cursor: "pointer"
+
+    };
+
+    export default App;
+      }
+  }
   return(
     <div 
     style={{
@@ -174,4 +332,3 @@ function App(){
     </div>
   );
 
-}
